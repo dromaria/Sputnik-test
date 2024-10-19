@@ -1,0 +1,41 @@
+services:
+    app:
+        build:
+            context: .
+            dockerfile: _docker/app/Dockerfile
+        volumes:
+            - ./:/var/www
+        container_name: book_king_app
+        depends_on:
+            - db
+        environment:
+            DB_USERNAME: root
+            DB_PASSWORD: root
+            DB_PORT: 5432
+            DB_HOST: db
+
+
+    nginx:
+        image: nginx:latest
+        volumes:
+            - ./:/var/www/
+            - ./_docker/nginx/conf.d/:/etc/nginx/conf.d/
+        ports:
+            - "8876:80"
+        container_name: book_king_nginx
+        depends_on:
+            - app
+
+    db:
+        image: postgres:latest
+        restart: always
+        ports:
+            - 8888:5432
+        environment:
+            POSTGRES_USER: root
+            POSTGRES_PASSWORD: root
+            POSTGRES_DB: book_king
+        volumes:
+            - ./tmp/db:/var/lib/postgresql/data
+        container_name: book_king_db
+
