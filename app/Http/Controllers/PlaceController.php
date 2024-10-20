@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Actions\IndexPlaceAction;
-use App\Actions\StorePlaceAction;
+use App\Actions\Place\IndexPlaceAction;
+use App\Actions\Place\StorePlaceAction;
 use App\DTO\Pagination\PaginationDTO;
 use App\DTO\Place\PlaceDTO;
 use App\Http\Requests\Pagination\PaginationRequest;
