@@ -3,13 +3,16 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Carbon;
 
 
 /**
- * 
+ *
  *
  * @property int $id
  * @property string $name
@@ -31,6 +34,10 @@ use Illuminate\Support\Carbon;
  * @method static Builder|Place whereUpdatedAt($value)
  * @method static Builder|Place withTrashed()
  * @method static Builder|Place withoutTrashed()
+ * @property-read Collection<int, User> $users
+ * @property-read int|null $users_count
+ * @property-read Collection<int, Place> $favorites
+ * @property-read int|null $favorites_count
  * @mixin \Eloquent
  */
 class Place extends Model
@@ -40,4 +47,13 @@ class Place extends Model
     protected $table = 'places';
     protected $fillable = ['name', 'latitude', 'longitude'];
 
+    public function users(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class);
+    }
+
+    public function favorites(): HasMany
+    {
+        return $this->hasMany(Place::class);
+    }
 }

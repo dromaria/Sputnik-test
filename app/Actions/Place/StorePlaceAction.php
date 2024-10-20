@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Actions;
+namespace App\Actions\Place;
 
 use App\DTO\Place\PlaceDTO;
 use App\Models\Place;

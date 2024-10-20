@@ -9,7 +9,7 @@ class StorePlaceRequest extends AuthorizeRequest
     public function rules(): array
     {
         return [
-            'name' => ['string', 'required', 'max:255'],
+            'name' => ['string', 'required', 'max:255', 'unique:places,name'],
             'latitude' => ['required', 'numeric', 'between:-90,90'],
             'longitude' => ['required', 'numeric', 'between:-180,180'],
         ];

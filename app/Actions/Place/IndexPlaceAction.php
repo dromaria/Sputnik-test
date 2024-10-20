@@ -1,9 +1,8 @@
 <?php
 
-namespace App\Actions;
+namespace App\Actions\Place;
 
 use App\DTO\Pagination\PaginationDTO;
-use App\DTO\Place\PlaceDTO;
 use App\Repositories\Interfaces\PlaceRepositoryInterface;
 use Illuminate\Support\Collection;
 
