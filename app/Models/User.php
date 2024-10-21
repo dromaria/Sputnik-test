@@ -6,6 +6,7 @@ use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -38,6 +39,9 @@ use Illuminate\Support\Carbon;
  * @method static Builder|User whereLogin($value)
  * @method static Builder|User wherePassword($value)
  * @method static Builder|User whereUpdatedAt($value)
+ * @property int $role_id
+ * @property-read Role $role
+ * @method static Builder|User whereRoleId($value)
  * @mixin \Eloquent
  */
 class User extends Authenticatable
@@ -70,5 +74,10 @@ class User extends Authenticatable
     public function favorites(): HasMany
     {
         return $this->HasMany(Favorite::class);
+    }
+
+    public function role(): BelongsTo
+    {
+        return $this->belongsTo(Role::class);
     }
 }
