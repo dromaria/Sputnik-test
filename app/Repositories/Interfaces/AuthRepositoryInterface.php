@@ -10,5 +10,5 @@ interface AuthRepositoryInterface
 {
     public function register(UserDTO $dto): Model|User;
 
-    public function login();
+    public function attempt(UserDTO $dto): bool|string;
 }
