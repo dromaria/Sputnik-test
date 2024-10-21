@@ -19,31 +19,25 @@ use Illuminate\Support\Carbon;
  *
  *
  * @property int $id
- * @property string $name
- * @property string $email
- * @property Carbon|null $email_verified_at
+ * @property string $login
  * @property mixed $password
- * @property string|null $remember_token
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
+ * @property-read Collection<int, Favorite> $favorites
+ * @property-read int|null $favorites_count
  * @property-read DatabaseNotificationCollection<int, DatabaseNotification> $notifications
  * @property-read int|null $notifications_count
+ * @property-read Collection<int, Place> $places
+ * @property-read int|null $places_count
  * @method static UserFactory factory($count = null, $state = [])
  * @method static Builder|User newModelQuery()
  * @method static Builder|User newQuery()
  * @method static Builder|User query()
  * @method static Builder|User whereCreatedAt($value)
- * @method static Builder|User whereEmail($value)
- * @method static Builder|User whereEmailVerifiedAt($value)
  * @method static Builder|User whereId($value)
- * @method static Builder|User whereName($value)
+ * @method static Builder|User whereLogin($value)
  * @method static Builder|User wherePassword($value)
- * @method static Builder|User whereRememberToken($value)
  * @method static Builder|User whereUpdatedAt($value)
- * @property-read Collection<int, Place> $places
- * @property-read int|null $places_count
- * @property-read Collection<int, User> $favorites
- * @property-read int|null $favorites_count
  * @mixin \Eloquent
  */
 class User extends Authenticatable
@@ -51,21 +45,19 @@ class User extends Authenticatable
     /** @use HasFactory<UserFactory> */
     use HasFactory, Notifiable;
 
+    protected $table = 'users';
     protected $fillable = [
-        'name',
-        'email',
+        'login',
         'password',
     ];
 
     protected $hidden = [
         'password',
-        'remember_token',
     ];
 
     protected function casts(): array
     {
         return [
-            'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
     }
