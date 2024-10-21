@@ -2,10 +2,10 @@
 
 namespace App\Http\Requests\Favorite;
 
-use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\Authorize\AuthorizeRequest;
 use Illuminate\Validation\Rule;
 
-class StoreFavoriteRequest extends FormRequest
+class StoreFavoriteRequest extends AuthorizeRequest
 {
     public function rules(): array
     {
