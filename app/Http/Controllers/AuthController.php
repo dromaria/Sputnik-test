@@ -4,21 +4,20 @@ namespace App\Http\Controllers;
 
 use App\Actions\Auth\RegisterAction;
 use App\DTO\User\UserDTO;
-use App\Http\Requests\User\StoreUserRequest;
+use App\Http\Requests\Auth\RegisterUserRequest;
 use Illuminate\Http\Response;
 
 class AuthController extends Controller
 {
-    public function register(StoreUserRequest $request, RegisterAction $registerAction): Response
+    public function register(RegisterUserRequest $request, RegisterAction $registerAction): Response
     {
-        $data = new UserDTO([
+        $dto = new UserDTO([
             'login' => $request->getLogin(),
             'password' => $request->getPassword(),
         ]);
 
-        $registerAction->execute($data);
+        $registerAction->execute($dto);
 
         return response()->noContent();
     }
-
 }

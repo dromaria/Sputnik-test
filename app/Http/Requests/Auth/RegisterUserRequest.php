@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Requests\User;
+namespace App\Http\Requests\Auth;
 
 use App\Http\Requests\Authorize\AuthorizeRequest;
 use Illuminate\Validation\Rules;
 
-class StoreUserRequest extends AuthorizeRequest
+class RegisterUserRequest extends AuthorizeRequest
 {
     public function rules(): array
     {
