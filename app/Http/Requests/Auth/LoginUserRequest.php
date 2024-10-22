@@ -10,7 +10,7 @@ class LoginUserRequest extends BaseRequest
     public function rules(): array
     {
         return [
-            'login' => ['required', 'string', 'max:255'],
+            'login' => ['required', 'string', 'min:6', 'max:255'],
             'password' => ['required', 'max:72', Rules\Password::defaults()],
         ];
     }
