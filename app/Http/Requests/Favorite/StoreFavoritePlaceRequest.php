@@ -4,7 +4,7 @@ namespace App\Http\Requests\Favorite;
 
 use App\Http\Requests\Authorize\AuthorizeRequest;
 
-class StoreFavoriteRequest extends AuthorizeRequest
+class StoreFavoritePlaceRequest extends AuthorizeRequest
 {
     public function rules(): array
     {
@@ -13,8 +13,7 @@ class StoreFavoriteRequest extends AuthorizeRequest
         ];
     }
 
-    public function getPlaceId()
-    {
+    public function getPlaceId(){
         return $this->validated('place_id');
     }
 }
