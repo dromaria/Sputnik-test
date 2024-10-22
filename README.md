@@ -27,5 +27,6 @@ Book King - сервис для выбора места для отдыха.
 
 ## Запуск
 1. Клонировать репозиторий: https://github.com/dromaria/Sputnik-test
-2. Запустить команду:  docker-compose up --build 
-3. Приложение будет запущено на http://localhost:8876
+2. Сделать файл ```env``` в корне приложения и скопировать в него данные из ```.env.example```
+3. Запустить команду:  ```docker-compose up --build``` 
+4. Приложение будет запущено на http://localhost:8876
