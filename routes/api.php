@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\PlaceController;
 use App\Http\Controllers\UserController;
+use App\Http\Middleware\AdminMiddleware;
 use Illuminate\Support\Facades\Route;
 
 Route::group([
@@ -26,8 +27,10 @@ Route::controller(PlaceController::class)->middleware('jwt.auth')->group(functio
 });
 
 Route::controller(FavoriteController::class)->middleware('jwt.auth')->group(function (){
-    Route::get('/users/{id}/favorites', 'index');
-    Route::post('/users/{id}/favorites', 'store');
+    Route::get('/users/{id}/favorites', 'index')->middleware(AdminMiddleware::class);
+    Route::post('/users/{id}/favorites', 'store')->middleware(AdminMiddleware::class);
+    Route::get('/favorites', 'indexCurrentUser');
+    Route::post('/favorites', 'storeCurrentUser');
 });
 
 Route::controller(UserController::class)->middleware('jwt.auth')->group(function (){
