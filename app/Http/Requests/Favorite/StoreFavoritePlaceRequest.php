@@ -2,9 +2,9 @@
 
 namespace App\Http\Requests\Favorite;
 
-use App\Http\Requests\Authorize\AuthorizeRequest;
+use App\Http\Requests\BaseRequest;
 
-class StoreFavoritePlaceRequest extends AuthorizeRequest
+class StoreFavoritePlaceRequest extends BaseRequest
 {
     public function rules(): array
     {

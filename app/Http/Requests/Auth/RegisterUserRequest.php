@@ -2,15 +2,15 @@
 
 namespace App\Http\Requests\Auth;
 
-use App\Http\Requests\Authorize\AuthorizeRequest;
+use App\Http\Requests\BaseRequest;
 use Illuminate\Validation\Rules;
 
-class RegisterUserRequest extends AuthorizeRequest
+class RegisterUserRequest extends BaseRequest
 {
     public function rules(): array
     {
         return [
-            'login' => ['required', 'string', 'max:255', 'unique:users,login'],
+            'login' => ['required', 'string', 'min:6', 'max:255', 'unique:users,login'],
             'password' => ['required', 'confirmed', 'max:72', Rules\Password::defaults()],
         ];
     }
