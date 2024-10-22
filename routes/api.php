@@ -35,5 +35,4 @@ Route::controller(FavoriteController::class)->middleware('jwt.auth')->group(func
 
 Route::controller(UserController::class)->middleware('jwt.auth')->group(function (){
     Route::get('/users', 'index');
-    Route::post('/users', 'store');
 });
