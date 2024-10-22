@@ -2,10 +2,10 @@
 
 namespace App\Http\Requests\Auth;
 
-use App\Http\Requests\Authorize\AuthorizeRequest;
+use App\Http\Requests\BaseRequest;
 use Illuminate\Validation\Rules;
 
-class LoginUserRequest extends AuthorizeRequest
+class LoginUserRequest extends BaseRequest
 {
     public function rules(): array
     {

@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Authorize;
+namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class AuthorizeRequest extends FormRequest
+class BaseRequest extends FormRequest
 {
     public function authorize(): bool
     {

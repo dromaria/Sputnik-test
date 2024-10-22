@@ -2,9 +2,9 @@
 
 namespace App\Http\Requests\Place;
 
-use App\Http\Requests\Authorize\AuthorizeRequest;
+use App\Http\Requests\BaseRequest;
 
-class StorePlaceRequest extends AuthorizeRequest
+class StorePlaceRequest extends BaseRequest
 {
     public function rules(): array
     {

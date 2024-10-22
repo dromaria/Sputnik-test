@@ -2,9 +2,9 @@
 
 namespace App\Http\Requests\Pagination;
 
-use App\Http\Requests\Authorize\AuthorizeRequest;
+use App\Http\Requests\BaseRequest;
 
-class PaginationRequest extends AuthorizeRequest
+class PaginationRequest extends BaseRequest
 {
     public function rules(): array
     {
