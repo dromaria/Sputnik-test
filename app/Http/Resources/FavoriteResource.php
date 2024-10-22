@@ -3,15 +3,18 @@
 namespace App\Http\Resources;
 
 use App\Models\Favorite;
-use App\Models\Place;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 /** @mixin Favorite */
 class FavoriteResource extends JsonResource
 {
-    public function toArray(Request $request): Place
+    public function toArray(Request $request): array
     {
-        return $this->place;
+        return [
+            'name' => $this->place->name,
+            'latitude' => $this->place->latitude,
+            'longitude' => $this->place->longitude,
+        ];
     }
 }

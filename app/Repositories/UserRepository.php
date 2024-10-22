@@ -3,10 +3,8 @@
 namespace App\Repositories;
 
 use App\DTO\Pagination\PaginationDTO;
-use App\DTO\User\UserDTO;
 use App\Models\User;
 use App\Repositories\Interfaces\UserRepositoryInterface;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 
 class UserRepository implements UserRepositoryInterface
@@ -18,8 +16,8 @@ class UserRepository implements UserRepositoryInterface
         return User::offset($offset)->limit($dto->limit)->get();
     }
 
-    public function store(UserDTO $dto): Model|User
+    public function indexById(int $userId): Collection
     {
-        return User::create($dto->toArray());
+        return User::whereId($userId)->get();
     }
 }
