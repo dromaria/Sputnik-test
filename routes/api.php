@@ -23,7 +23,7 @@ Route::group([
 
 Route::controller(PlaceController::class)->middleware('jwt.auth')->group(function (){
     Route::get('/places', 'index');
-    Route::post('/places', 'store');
+    Route::post('/places', 'store')->middleware(AdminMiddleware::class);
 });
 
 Route::controller(FavoriteController::class)->middleware('jwt.auth')->group(function (){
