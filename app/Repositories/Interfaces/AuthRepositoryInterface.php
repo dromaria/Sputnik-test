@@ -16,4 +16,5 @@ interface AuthRepositoryInterface
     public function me(): User|Authenticatable|null;
 
     public function refresh(): string;
+
 }

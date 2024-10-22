@@ -9,4 +9,6 @@ interface UserRepositoryInterface
 {
     public function index(PaginationDTO $dto): Collection;
 
+    public function indexById(int $userId): Collection;
+
 }

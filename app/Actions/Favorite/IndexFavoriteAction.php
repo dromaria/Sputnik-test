@@ -14,6 +14,7 @@ class IndexFavoriteAction
 
     public function execute(int $userId): Model|User
     {
+
         return $this->repository->index($userId);
     }
 }

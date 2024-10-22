@@ -24,7 +24,7 @@ class AuthRepository implements AuthRepositoryInterface
 
     public function me(): User|Authenticatable|null
     {
-        return Auth::user();
+        return Auth::user()->load('role');
     }
 
     public function refresh(): string

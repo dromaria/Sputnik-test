@@ -15,23 +15,22 @@ Route::group([
 
     Route::post('register', [AuthController::class, 'register']);
     Route::post('login', [AuthController::class, 'login']);
-    Route::post('me', [AuthController::class, 'me'])->middleware('jwt.auth');
     Route::post('logout', [AuthController::class, 'logout'])->middleware('jwt.auth');
     Route::post('refresh', [AuthController::class, 'refresh'])->middleware('jwt.auth');
 
 });
 
-Route::controller(PlaceController::class)->group(function (){
+Route::controller(PlaceController::class)->middleware('jwt.auth')->group(function (){
     Route::get('/places', 'index');
     Route::post('/places', 'store');
 });
 
-Route::controller(FavoriteController::class)->group(function (){
+Route::controller(FavoriteController::class)->middleware('jwt.auth')->group(function (){
     Route::get('/users/{id}/favorites', 'index');
     Route::post('/users/{id}/favorites', 'store');
 });
 
-Route::controller(UserController::class)->group(function (){
+Route::controller(UserController::class)->middleware('jwt.auth')->group(function (){
     Route::get('/users', 'index');
     Route::post('/users', 'store');
 });

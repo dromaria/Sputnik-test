@@ -15,4 +15,9 @@ class UserRepository implements UserRepositoryInterface
         $offset = ($dto->page - 1) * $dto->limit;
         return User::offset($offset)->limit($dto->limit)->get();
     }
+
+    public function indexById(int $userId): Collection
+    {
+        return User::whereId($userId)->get();
+    }
 }
