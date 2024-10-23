@@ -12,6 +12,7 @@ class DatabaseSeeder extends Seeder
     {
         User::factory()->create([
             'login' => 'Test Admin',
+            'password' => 'password',
             'role_id' => 2
         ]);
 
