@@ -13,7 +13,7 @@ services:
             DB_PASSWORD: root
             DB_PORT: 5432
             DB_HOST: db
-        command: sh -c "composer install --no-dev && php artisan migrate && php-fpm"
+        command: sh -c "composer install && php artisan migrate && php-fpm"
 
 
     nginx:
