@@ -27,10 +27,10 @@ Route::controller(PlaceController::class)->middleware('jwt.auth')->group(functio
 });
 
 Route::controller(FavoriteController::class)->middleware('jwt.auth')->group(function (){
-    Route::get('/users/{id}/favorites', 'index')->middleware(AdminMiddleware::class);
-    Route::post('/users/{id}/favorites', 'store')->middleware(AdminMiddleware::class);
-    Route::get('/favorites', 'indexCurrentUser');
-    Route::post('/favorites', 'storeCurrentUser');
+    Route::get('/users/{id}/favorites', 'indexById')->middleware(AdminMiddleware::class);
+    Route::post('/users/{id}/favorites', 'storeById')->middleware(AdminMiddleware::class);
+    Route::get('/favorites', 'index');
+    Route::post('/favorites', 'store');
 });
 
 Route::controller(UserController::class)->middleware('jwt.auth')->group(function (){

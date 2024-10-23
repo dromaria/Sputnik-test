@@ -2,18 +2,24 @@
 
 namespace App\Actions\Favorite;
 
-use App\Models\User;
+use App\Actions\Auth\MeAction;
 use App\Repositories\Interfaces\FavoriteRepositoryInterface;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Collection;
 
 class IndexFavoriteAction
 {
-    public function __construct(private FavoriteRepositoryInterface $repository)
+    public function __construct(private FavoriteRepositoryInterface $repository, private MeAction $action)
     {
     }
 
-    public function execute(int $userId): Model|User
+    public function execute(): Collection
     {
-        return $this->repository->index($userId);
+        $user = $this->action->execute();
+
+        if ($user->role->role == 'admin')
+        {
+            return $this->repository->indexAll();
+        }
+        return collect([$this->repository->index($user->id)]);
     }
 }

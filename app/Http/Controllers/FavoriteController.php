@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Actions\Favorite\IndexCurrentUserFavoriteAction;
 use App\Actions\Favorite\IndexFavoriteAction;
-use App\Actions\Favorite\StoreCurrentUserFavoriteAction;
+use App\Actions\Favorite\IndexByIdFavoriteAction;
 use App\Actions\Favorite\StoreFavoriteAction;
+use App\Actions\Favorite\StoreByIdFavoriteAction;
 use App\DTO\Favorite\FavoriteDTO;
 use App\Http\Requests\Favorite\StoreFavoritePlaceRequest;
 use App\Http\Requests\Favorite\StoreFavoriteRequest;
@@ -15,21 +15,21 @@ use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class FavoriteController extends Controller
 {
-    public function index(int $userId, IndexFavoriteAction $action): UserFavoriteResource
+    public function indexById(int $userId, IndexByIdFavoriteAction $action): UserFavoriteResource
     {
         $user = $action->execute($userId);
 
         return new UserFavoriteResource($user);
     }
 
-    public function indexCurrentUser(IndexCurrentUserFavoriteAction $action): ResourceCollection
+    public function index(IndexFavoriteAction $action): ResourceCollection
     {
         $users = $action->execute();
 
         return UserFavoriteResource::collection($users);
     }
 
-    public function store(StoreFavoriteRequest $request, int $userId, StoreFavoriteAction $action): FavoriteResource
+    public function storeById(StoreFavoriteRequest $request, int $userId, StoreByIdFavoriteAction $action): FavoriteResource
     {
         $dto = new FavoriteDTO([
             'user_id' => $userId,
@@ -41,7 +41,7 @@ class FavoriteController extends Controller
         return new FavoriteResource($favorite);
     }
 
-    public function storeCurrentUser(StoreFavoritePlaceRequest $request, StoreCurrentUserFavoriteAction $action): FavoriteResource
+    public function store(StoreFavoritePlaceRequest $request, StoreFavoriteAction $action): FavoriteResource
     {
         $dto = new FavoriteDTO([
             'place_id' => $request->getPlaceId(),
