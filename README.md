@@ -27,6 +27,11 @@ Book King - сервис для выбора места для отдыха.
 
 ## Запуск
 1. Клонировать репозиторий: https://github.com/dromaria/Sputnik-test
-2. Сделать файл ```env``` в корне приложения и скопировать в него данные из ```.env.example```
+2. Создать файл ```env``` в корне приложения и скопировать в него данные из ```.env.example```
 3. Запустить команду:  ```docker-compose up --build``` 
 4. Приложение будет запущено на http://localhost:8876
+5. Запустить команду для добавления записи администратора ```docker exec -it book_king_app php artisan migrate --seed```
+6. Данные администратора:
+   - login = "Test Admin"
+   - password = "password"
+7. Постман коллекция находится в файле [Sputnik-test.postman_collection.json](Sputnik-test.postman_collection.json)
